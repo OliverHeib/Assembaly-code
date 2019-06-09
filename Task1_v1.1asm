@@ -1,0 +1,26 @@
+.data
+Name:
+.space 64 #initiates Name and restrict it to 64 characters
+
+.text
+#inputting name
+li $v0, 8 #syscall number for inputting a string
+la $a0, Name #sets the input to the Name variable
+li $a1, 64 #restricts the input to 64 characters
+syscall
+add $s0, $a0, $zero #copies the input to another register
+
+#inputting ID
+li $v0, 5 #syscall number for inputting an integer
+syscall
+add $s1, $v0, $zero #copies the input to another register
+
+#outputting name
+add $a0, $s0, $zero #putting the users name in the correct register for outputting
+li $v0, 4 #syscall number for outputting an integer
+syscall
+
+#outputting ID
+add $a0, $s1, $zero #putting the users ID in the correct register for outputting
+li $v0, 1 #syscall number for outputting a string
+syscall
